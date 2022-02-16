@@ -21,8 +21,12 @@ class WelcomePage extends HookConsumerWidget {
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('Welcome'),
+            const SizedBox(
+              height: 20,
+            ),
             ElevatedButton(
               onPressed: () async {
                 await _user.signInAnonymously();

@@ -22,14 +22,6 @@ dependencies:
   firebase_auth: ^3.3.7
   cloud_firestore: ^3.1.8
 
-  # create_code
-  freezed_annotation: ^1.1.0
-  json_annotation: ^4.4.0
-
-  # chat_ui
-  flutter_chat_ui: ^1.5.5
-  flutter_chat_types: ^3.3.0
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -37,12 +29,6 @@ dev_dependencies:
   # State Management
   flutter_hooks: ^0.18.2+1
   hooks_riverpod: ^1.0.3
-  state_notifier: ^0.7.2+1
-
-  # create_code
-  freezed: ^1.1.1
-  build_runner: ^2.1.7
-  json_serializable: ^6.1.4
 
   # linter
   flutter_lints: ^1.0.0

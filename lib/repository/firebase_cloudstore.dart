@@ -4,8 +4,8 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final messageStreamProvider = StreamProvider.autoDispose((ref) {
   final messageCollection = FirebaseFirestore.instance
-      .collection('message')
-      .orderBy('created_at', descending: true)
+      .collection('messages')
+      .orderBy('createdAt', descending: true)
       .snapshots();
 
   return messageCollection;
@@ -18,10 +18,13 @@ class FirebaseCloudStoreService {
   FirebaseCloudStoreService(this._firebaseCloudStore);
   final FirebaseFirestore _firebaseCloudStore;
 
-  void sendMessage({required String userId, required String text}) {
-    _firebaseCloudStore
+  Future<void> sendMessage(
+      {required String userId,
+      required String text,
+      required String createdAt}) async {
+    await _firebaseCloudStore
         .collection('messages')
         .doc()
-        .set({'userId': userId, 'text': text, 'createdAt': Timestamp.now()});
+        .set({'userId': userId, 'text': text, 'createdAt': createdAt});
   }
 }
