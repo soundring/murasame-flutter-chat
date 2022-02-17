@@ -13,7 +13,7 @@ class WelcomePage extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final _user = ref.watch(firebaseAuthProvider);
+    final _firebaseAuthProvider = ref.watch(firebaseAuthProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -29,7 +29,7 @@ class WelcomePage extends HookConsumerWidget {
             ),
             ElevatedButton(
               onPressed: () async {
-                await _user.signInAnonymously();
+                await _firebaseAuthProvider.signInAnonymously();
                 Navigator.of(context).pushReplacement(MaterialPageRoute<void>(
                     builder: (context) => const ChatPage()));
               },

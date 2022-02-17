@@ -13,8 +13,7 @@ class FirebaseAuthService {
     return _firebaseAuth.currentUser!;
   }
 
-  Future<User> signInAnonymously() async {
+  Future<void> signInAnonymously() async {
     await _firebaseAuth.signInAnonymously();
-    return getCurrentUser();
   }
 }
