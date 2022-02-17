@@ -46,11 +46,10 @@ Widget _otherBubble({required String text}) {
   return Bubble(
     margin: const BubbleEdges.only(top: 30),
     radius: const Radius.elliptical(5.0, 10.0),
-    alignment: Alignment.topRight,
+    alignment: Alignment.topLeft,
     nipWidth: 30,
     nipHeight: 10,
-    nip: BubbleNip.rightBottom,
-    color: const Color.fromRGBO(225, 255, 199, 1.0),
+    nip: BubbleNip.leftTop,
     child: Text(
       text,
       textAlign: TextAlign.right,
