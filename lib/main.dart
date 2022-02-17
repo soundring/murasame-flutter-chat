@@ -9,12 +9,14 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:murasame_flutter_chat/pages/welcome_page.dart';
 
 void main() async {
-  await Firebase.initializeApp(
-      options: const FirebaseOptions(
-          apiKey: 'AIzaSyCoVPyHql6UiOfyHI8XcYY2eKkv_srQuFc',
-          appId: '1:1051815331549:web:e06f446fffdecc176cfd34',
-          messagingSenderId: '1051815331549',
-          projectId: 'murasame-flutter-chat'));
+  const firebaseOptions = FirebaseOptions(
+    apiKey: 'AIzaSyCoVPyHql6UiOfyHI8XcYY2eKkv_srQuFc',
+    projectId: 'murasame-flutter-chat',
+    messagingSenderId: '1051815331549',
+    appId: '1:1051815331549:web:e06f446fffdecc176cfd34',
+  );
+
+  await Firebase.initializeApp(options: firebaseOptions);
   runApp(
     const ProviderScope(
       child: MyApp(),
