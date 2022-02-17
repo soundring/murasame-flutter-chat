@@ -2,11 +2,13 @@
 import 'package:flutter/material.dart';
 
 // Package imports:
+import 'package:bubble/bubble.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:murasame_flutter_chat/widgets/text_input_area.dart';
 
 // Project imports:
+import 'package:murasame_flutter_chat/widgets/chat_bubble.dart';
+import 'package:murasame_flutter_chat/widgets/text_input_area.dart';
 import '../repository/firebase_cloudstore.dart';
 
 class Chat extends HookConsumerWidget {
@@ -23,18 +25,15 @@ class Chat extends HookConsumerWidget {
           children: [
             Expanded(
               child: ListView(
+                  reverse: true,
                   children: query.docs.map((document) {
-                return Card(
-                  child: ListTile(
-                    title: Text(document['text']),
-                    subtitle: Text(
-                        'Date:${document['createdAt']}\nUserID:${document['userId']}'),
-                  ),
-                );
-              }).toList()),
+                    return ChatBubble(
+                      document: document,
+                    );
+                  }).toList()),
             ),
             const Padding(
-              padding: EdgeInsets.only(bottom: 8),
+              padding: EdgeInsets.only(top: 8, bottom: 8),
               child: TextInputArea(),
             ),
           ],

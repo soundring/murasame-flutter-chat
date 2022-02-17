@@ -1,7 +1,10 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+// Project imports:
 import '../repository/firebase_auth.dart';
 import '../repository/firebase_cloudstore.dart';
 import '../viewModel/message_viewModel.dart';
