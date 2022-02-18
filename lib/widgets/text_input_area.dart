@@ -19,7 +19,24 @@ class TextInputArea extends HookConsumerWidget {
     final _messageControllerProvider =
         ref.watch(messageControllerProvider.state);
 
+    void _sendMessage() {
+      if (_messageControllerProvider.state.text.isEmpty) return;
+
+      final userId = _firebaseAuthProvider.getCurrentUser().uid;
+      final text = _messageControllerProvider.state.text;
+      final createdAt = DateTime.now().toString();
+      _firebaseCloudStoreProvider.sendMessage(
+        userId: userId,
+        text: text,
+        createdAt: createdAt,
+      );
+      _messageControllerProvider.state.clear();
+    }
+
     return TextFormField(
+      onFieldSubmitted: (String value) {
+        _sendMessage();
+      },
       controller: _messageControllerProvider.state,
       autofocus: true,
       style: const TextStyle(
@@ -43,16 +60,7 @@ class TextInputArea extends HookConsumerWidget {
         ),
         hintText: 'input text',
         suffixIcon: IconButton(
-          onPressed: () {
-            final userId = _firebaseAuthProvider.getCurrentUser().uid;
-            final text = _messageControllerProvider.state.text;
-            final createdAt = DateTime.now().toString();
-            _firebaseCloudStoreProvider.sendMessage(
-              userId: userId,
-              text: text,
-              createdAt: createdAt,
-            );
-          },
+          onPressed: _sendMessage,
           icon: const Icon(Icons.send),
         ),
       ),
