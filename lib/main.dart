@@ -1,5 +1,7 @@
 // Flutter imports:
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 // Package imports:
 import 'package:firebase_core/firebase_core.dart';
@@ -9,6 +11,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:murasame_flutter_chat/pages/welcome_page.dart';
 
 void main() async {
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('assets/fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+
   const firebaseOptions = FirebaseOptions(
     apiKey: 'AIzaSyCoVPyHql6UiOfyHI8XcYY2eKkv_srQuFc',
     projectId: 'murasame-flutter-chat',
@@ -33,6 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.orange,
+        fontFamily: 'Noto Sans JP',
       ),
       home: const WelcomePage(),
     );
